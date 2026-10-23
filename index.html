@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feuerwehr Stamsried - Uhrzeit Widget</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: transparent; /* Transparent für iFrame-Einbindung */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .widget-container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 15px 25px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border: 2px solid #d32f2f;
+    }
+
+    .logo-container img {
+      height: 100px; /* Höhe des Wappens (anpassbar) */
+      width: auto;
+      display: block;
+    }
+
+    .clock-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #333333;
+    }
+
+    .time {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #d32f2f; /* Feuerwehr-Rot */
+      line-height: 1;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .date {
+      font-size: 1rem;
+      margin-top: 5px;
+      color: #666666;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="widget-container">
+    <!-- Wappen / Logo -->
+    <div class="logo-container">
+      <img src="wappen.png" alt="Wappen Freiwillige Feuerwehr Markt Stamsried">
+    </div>
+
+    <!-- Uhrzeit und Datum -->
+    <div class="clock-container">
+      <div id="clock" class="time">00:00:00</div>
+      <div id="date" class="date">Montag, 1. Januar 2026</div>
+    </div>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+
+      // Uhrzeit formatieren (HH:MM:SS)
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+
+      // Datum formatieren
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById('date').textContent = now.toLocaleDateString('de-DE', options);
+    }
+
+    // Uhrzeit sofort initialisieren und jede Sekunde aktualisieren
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+
+</body>
+</html>
