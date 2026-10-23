@@ -13,7 +13,7 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background-color: black; /* Transparent für iFrame-Einbindung */
+      background-color: #000000; /* Hintergrund schwarz */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -26,14 +26,12 @@
       align-items: center;
       gap: 20px;
       padding: 15px 25px;
-      background-color: black;
+      background-color: #000000; /* Schwarzer Hintergrund */
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      border: 2px solid #d32f2f;
     }
 
     .logo-container img {
-      height: 100px; /* Höhe des Wappens (anpassbar) */
+      height: 100px;
       width: auto;
       display: block;
     }
@@ -42,13 +40,13 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      color: #333333;
     }
 
+    /* Schriftfarbe auf WEISS gestellt */
     .time {
       font-size: 2.5rem;
       font-weight: bold;
-      color: #d32f2f; /* Feuerwehr-Rot */
+      color: #ffffff; /* Weiß */
       line-height: 1;
       font-family: 'Courier New', Courier, monospace;
     }
@@ -56,19 +54,17 @@
     .date {
       font-size: 1rem;
       margin-top: 5px;
-      color: #666666;
+      color: #ffffff; /* Weiß */
     }
   </style>
 </head>
 <body>
 
   <div class="widget-container">
-    <!-- Wappen / Logo -->
     <div class="logo-container">
       <img src="wappen.png" alt="Wappen Freiwillige Feuerwehr Markt Stamsried">
     </div>
 
-    <!-- Uhrzeit und Datum -->
     <div class="clock-container">
       <div id="clock" class="time">00:00:00</div>
       <div id="date" class="date">Montag, 1. Januar 2026</div>
@@ -79,21 +75,18 @@
     function updateClock() {
       const now = new Date();
 
-      // Uhrzeit formatieren (HH:MM:SS)
       const hours = String(now.getHours()).padStart(2, '0');
       const minutes = String(now.getMinutes()).padStart(2, '0');
       const seconds = String(now.getSeconds()).padStart(2, '0');
       document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
 
-      // Datum formatieren
       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
       document.getElementById('date').textContent = now.toLocaleDateString('de-DE', options);
     }
 
-    // Uhrzeit sofort initialisieren und jede Sekunde aktualisieren
     updateClock();
     setInterval(updateClock, 1000);
   </script>
 
 </body>
-</html>
+</html>s
